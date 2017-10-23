@@ -1,3 +1,5 @@
+""" Python 3 required ! """
+
 def generate_array_chunk():
     """ Generate Y elements from user input of given length """
     line_str = input()
