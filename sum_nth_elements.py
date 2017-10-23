@@ -1,7 +1,7 @@
 """
-If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.
+If we list all the natural numbers BELOW 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.
 The sum of these multiples is 23.
-Find the sum of all the multiples of 3 or 5 below 1000.
+Find the sum of all the multiples of 3 or 5 BELOW 1000.
 """
 
 
@@ -15,16 +15,25 @@ def sum_n_positive(n, number):
     how_many_n_items = number / n
     return n * (how_many_n_items * (how_many_n_items + 1)/2)
 
-sum_each_3d = sum_n_positive(3, 1000)
-sum_each_5th = sum_n_positive(5, 1000)
-sum_intersections = sum_n_positive(3*5, 1000)
-print 'Formula only: %s' % str(sum_each_3d + sum_each_5th - sum_intersections)
+sum_each_3d = sum_n_positive(3, 999)
+sum_each_5th = sum_n_positive(5, 999)
+sum_intersections = sum_n_positive(3*5, 999)
+sum_tot = sum_each_3d + sum_each_5th - sum_intersections
+print 'Formula only: %s' % str(sum_tot)
+assert sum_tot == 233168
 
 
 # iterate over list , sum only items which match (number % 3)
 # Complexity: O(n)
-sum_a = sum([number for number in range(1, 1000) if number % 3 == 0 or number % 5 == 0])
+res = set()
+for number in range(1, 1000):
+    if number % 3 == 0:
+       res.add(number)
+    elif number % 5 == 0:
+       res.add(number)
+sum_a = sum(res)
 print 'Iterate over list: %s' % sum_a
+assert sum_a == 233168
 
 
 def func(n, m, arr):
@@ -47,4 +56,4 @@ def func(n, m, arr):
 
 sum_b = func(3, 5, list(range(1, 1000)))
 print 'Iterate over each 3d: %s' % sum_b
-assert sum_a == sum_b, '{} is not equal {}'.format(sum_a, sum_b)
+assert sum_b == 233168
